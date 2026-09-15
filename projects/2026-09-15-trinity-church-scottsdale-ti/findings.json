@@ -1,0 +1,143 @@
+{
+  "project": {
+    "name": "The Trinity Church - West and East Phase Tenant Improvement",
+    "slug": "2026-09-15-trinity-church-scottsdale-ti",
+    "date": "2026-09-15",
+    "requester": "UNITE Plan Drafting Team (source doc owner: nikole@uniteideas.com)",
+    "source_documents": [
+      { "title": "Trinity_Plan_Change_Summary - Site visit 9/8-9/2026", "url": "https://docs.google.com/document/d/1Nzy45ZA10OHw7-YreeEDlCr-gT54ObGhrmxDqMVnds0/edit" },
+      { "title": "The Trinity Church 07-14-2026 Project Manual (title page / project info)", "url": null }
+    ],
+    "project_type": "plan change / tenant improvement, mid-construction-document phase",
+    "description": "Tenant improvement across two floors (97,910 SF total: Phase I West 56,966 SF, Phase II East 40,944 SF) changing Use Group from Business to Assembly (A-3, place of worship), with a specialty coffee cafe, playland/kids area, baptistries, and access-controlled door system."
+  },
+  "jurisdiction": {
+    "state": "Arizona",
+    "county": "Maricopa County",
+    "city": "Scottsdale",
+    "special_districts": [],
+    "notes": "Confirmed from project specification title page: 10001 North 92nd Street, Scottsdale, AZ 85258."
+  },
+  "findings": [
+    {
+      "id": "cafe-handwash-sink",
+      "category": "health_food_service",
+      "question": "Can a hand sanitizer station legally replace the hand wash sink at the specialty coffee cafe counter, which was ruled cost-prohibitive?",
+      "source_quote": "Cafe concept: Specialty coffee/cafe (not just drip coffee). Must comply with Maricopa County Health Department requirements for commercial food service. Hand wash sink at cafe was ruled cost-prohibitive -- replace with hand sanitizer station.",
+      "applicable_codes": [
+        { "code_body": "Maricopa County Environmental Health Code, Ch. VIII Sec. 2", "adopted_by": "Maricopa County Environmental Services Department (MCESD)", "section": "Reg. 1 (adoption); plan review requirement Reg. 2", "url": "https://www.maricopa.gov/DocumentCenter/View/5477/Chapter-8-Section-2---Food-Establishments-PDF", "edition_or_effective_date": "current, references FDA Food Code 2017 Ed., effective 10/6/2021" },
+        { "code_body": "FDA Food Code, 2017 Edition", "adopted_by": "Maricopa County, by reference (no future editions adopted)", "section": "2-301.12, 2-301.14, 2-301.16(A)(3), 5-203.11, 5-204.11, 5-205.11", "url": "https://www.fda.gov/food/fda-food-code/food-code-2017", "edition_or_effective_date": "2017" }
+      ],
+      "rule_in_plain_language": "A dedicated handwashing sink is required at any food/beverage prep or service bar; a specialty espresso/steamed-milk counter is a TCS (time/temperature control for safety) food operation and falls under MCESD's 'Open Food Service and Beverage Establishment' category, which requires a hand sink centrally located and directly accessible from all bars. Hand sanitizer is only ever a supplement applied after washing at a sink (2-301.16(A)(3)), never a substitute. The only sink-substitution exception (chemically treated towelettes, not sanitizer, under 5-203.11(C)) is limited to mobile/temporary establishments and vending locations, which this permanent counter is not.",
+      "problem_identified": { "exists": true, "severity": "significant", "description": "High probability of plan-review rejection at Maricopa County Environmental Services. This is not a gray area under the adopted code." },
+      "proposed_solutions": [
+        { "option": "Compact plumbed ADA hand sink (9x9 to 15 inch wall-mount or corner unit) tucked at the end of the counter run", "tradeoffs": "Smallest true footprint, fully code-compliant, one-time plumbing tie-in cost." },
+        { "option": "Point-of-use tankless/instant electric water heater dedicated to that one sink", "tradeoffs": "Avoids extending the main building water heater loop to a satellite counter; adds a small electric water heater cost but usually cheaper than a long hot water run." },
+        { "option": "Reconfigure counter layout (move pastry case/POS) to free 12-18 inches of run for the sink", "tradeoffs": "Often cheaper than moving walls; may require re-coordinating other cafe millwork already in progress." },
+        { "option": "Self-contained portable hand-wash cart", "tradeoffs": "MCESD recognizes these mainly for catering/mobile use; likely accepted only as a stop-gap with prior written approval, not as a final permitted installation -- higher inspector scrutiny and daily fill/drain labor. Not recommended as the end-state fix." }
+      ],
+      "confidence": "verified_primary_source",
+      "verification_note": "Call MCESD Plan Review (602-506-6824) to confirm the establishment classification in writing and finalize the cafe layout before the menu/plan submission. An architect should confirm final sink placement against ADA clearance and the 25-foot accessibility rule from all bars."
+    },
+    {
+      "id": "permit-field-revision-strategy",
+      "category": "other",
+      "question": "Can the site-visit plan changes (playland reconfiguration, egress/security door changes, restroom stall increase, baptistry plumbing, MEP changes) be implemented as field revisions after permit issuance, without a formal resubmission to the City of Scottsdale?",
+      "source_quote": "Do NOT resubmit plans to the city with all current changes. Proceed with the permit using existing drawings... All plan changes discussed at the site visit will be incorporated as field revisions after the permit is issued (not as a resubmission). This avoids triggering a full re-review by the city.",
+      "applicable_codes": [
+        { "code_body": "2021 International Building Code (IBC), as adopted by City of Scottsdale", "adopted_by": "City of Scottsdale, Ordinance No. 4550 / Resolution No. 12498, SRC Ch. 31", "section": "107.4, Amended Construction Documents (not locally amended, model-code text governs)", "url": "https://up.codes/s/amended-construction-documents", "edition_or_effective_date": "2021 IBC, effective 1/1/2023" },
+        { "code_body": "2021 International Existing Building Code (IEBC)", "adopted_by": "City of Scottsdale, SRC Ch. 31 Art. VIII, per SRC Sec. 101.4.7", "section": "Chapter 10, Change of Occupancy", "url": "https://codes.iccsafe.org/content/IEBC2021P1/chapter-10-change-of-occupancy", "edition_or_effective_date": "2021" }
+      ],
+      "rule_in_plain_language": "IBC 107.4 requires that any change made during construction that is not in compliance with the approved construction documents be resubmitted as amended construction documents. No Scottsdale-specific written 'field revision' threshold document exists; the Building Official's judgment on the scope/extent of the change governs. Egress door location/hardware, security/lockdown door hardware, converting classroom space to lobby/assembly space (which intersects the in-progress B-to-A occupancy reclassification), new restroom stalls, and new baptistry plumbing and water heaters are all plan-reviewed life-safety or systems items under standard code administration -- not typically 'field revision' territory.",
+      "problem_identified": { "exists": true, "severity": "significant", "description": "Real, non-trivial process risk. If Scottsdale's inspectors or plan reviewers determine the field changes exceed approved plans, likely outcomes include a stop-work order, a required retroactive amended-document submittal, re-inspection of completed work at the contractor's cost and delay, and a delayed certificate of occupancy given that C.O. issuance depends on egress and life-safety systems matching approved plans for the B-to-A conversion." },
+      "proposed_solutions": [
+        { "option": "Proactively disclose the site-visit changes to the assigned plan reviewer now, even while pursuing permit issuance on the original drawings, and get their determination in writing", "tradeoffs": "Small time cost now; substantially reduces risk of a stop-work order or retroactive resubmittal later." },
+        { "option": "Selectively resubmit only the highest-risk items (egress door location/hardware, the security door, and anything affecting occupant load/occupancy classification such as the lobby/playland reconfiguration) as a formal plan revision", "tradeoffs": "Keeps the bulk of the permit moving on the original schedule while addressing the items most likely to trigger enforcement action." },
+        { "option": "Also route the restroom stall count increase and baptistry plumbing/water heater additions through at least a plumbing plan revision", "tradeoffs": "These affect fixture-count code compliance and new mechanical/electrical loads; handling as true field revisions carries similar risk to the egress items." },
+        { "option": "Request a pre-application/pre-construction meeting with Scottsdale Building Safety given the compounded occupancy change", "tradeoffs": "Gets a Building-Official-level read on scope before construction rather than risking an inspector's field determination mid-project." }
+      ],
+      "confidence": "verified_primary_source",
+      "verification_note": "No Scottsdale-specific written field-revision definition was located despite thorough searching. Confirm directly with Scottsdale Building Safety / One Stop Shop (480-312-2500) or the assigned plan reviewer before proceeding on the current strategy."
+    },
+    {
+      "id": "access-controlled-egress-doors",
+      "category": "fire_life_safety",
+      "question": "Do the roughly 90 doors receiving key card/fob access control readers need special egress hardware under the building code?",
+      "source_quote": "Approximately 90 doors total (77 interior) to receive power and data for key card / key fob access control readers.",
+      "applicable_codes": [
+        { "code_body": "2021 International Building Code (IBC)", "adopted_by": "City of Scottsdale (Chapter 10 not locally amended)", "section": "1010.2.10, Access-Controlled Egress Doors (2021 numbering; renumbered again in later editions)", "url": "https://idighardware.com/2022/08/2021-ibc-commentary-on-egress-doors-with-access-control/", "edition_or_effective_date": "2021 IBC" }
+      ],
+      "rule_in_plain_language": "Where a card-reader/fob system controls the egress side of a door on a required means of egress, the code requires: a sensor that detects an approaching occupant and unlocks the door; a lock that fails safe (unlocks) on loss of power to the lock or sensor; and a manual push-button override mounted 40-48 inches above the floor, within 5 feet of the door, marked with signage, that keeps the door unlocked for at least 30 seconds when pressed. This only applies to doors where the reader affects the egress-side hardware -- if readers control entry only and the interior lever/panic hardware always operates freely, ordinary door hardware rules apply instead.",
+      "problem_identified": { "exists": true, "severity": "minor", "description": "Not a blocker, but a door-by-door verification item across roughly 90 doors -- worth resolving with the hardware consultant before installation rather than after." },
+      "proposed_solutions": [
+        { "option": "Have the electrical engineer/hardware consultant confirm, door by door, which locking topology is used (electrified mortise lock/strike with free-egress trim vs. true two-sided access control)", "tradeoffs": "Determines which subset of the 90 doors actually need the sensor/push-button/signage package -- avoids over-speccing hardware on doors that don't need it." }
+      ],
+      "confidence": "likely_secondary_source",
+      "verification_note": "ICC's own code pages returned a 403 to automated fetch during research; section numbering and requirements were corroborated across multiple independent hardware-industry and code-consulting sources, not read verbatim from ICC. Confirm exact current text against a licensed ICC/UpCodes source, and note that section numbers shift between the 2018, 2021, and 2024 editions -- a common source of citation errors."
+    },
+    {
+      "id": "kids-ministry-lockdown-door",
+      "category": "fire_life_safety",
+      "question": "Is it code-compliant to retain both a dedicated egress-only door and a separate lockable security door on the kids ministry classroom hallway, given the reduced number of secure doors?",
+      "source_quote": "Lockdown/security: both the new egress door AND the existing interior security door are to be retained. The egress door is life safety only; the security door is needed for midweek use when students and kids share the space.",
+      "applicable_codes": [
+        { "code_body": "2021 International Building Code (IBC)", "adopted_by": "City of Scottsdale (Chapter 10 not locally amended)", "section": "1010.2.8, Locking Arrangements in Educational Occupancies", "url": "https://up.codes/s/locking-arrangements-in-educational-occupancies", "edition_or_effective_date": "2021 IBC" }
+      ],
+      "rule_in_plain_language": "A door may be locked to keep intruders out of a classroom/occupied room, provided: it can be unlocked from outside with a key or approved means; the interior egress hardware remains fully code-compliant (single-motion release, no key/tool/special knowledge, panic hardware required if occupant load is 50 or more); listed panic hardware, fire door hardware, and closers are not modified; and any fire-door alteration follows NFPA 80. Keeping a dedicated, hardware-clean egress-only door separate from the lockdown security door is a sound and commonly used strategy -- it avoids stacking a security lock and an access-control lock on the same door leaf, which is where most inspection failures happen.",
+      "problem_identified": { "exists": true, "severity": "moderate", "description": "The two-door approach is reasonable in principle, but three items are not resolved by document research alone and need the fire marshal's or plan reviewer's sign-off: (1) the final occupancy classification of the kids ministry space (Assembly incidental use vs. Group E vs. Group I-4 day care), which determines which locking section legally applies; (2) whether reducing the number of secure doors facing the hallway drops the room below the required number of exit access doorways or exceeds allowable common path of travel for the child occupant load (a separate egress-count question from the locking-hardware question); (3) confirmation that the security door, when locked during lockdown, is genuinely secondary to (not a substitute for) the dedicated egress door's compliance." },
+      "proposed_solutions": [
+        { "option": "Confirm occupancy classification of the kids ministry space with the plan reviewer before finalizing the door count", "tradeoffs": "Resolves which code section applies and whether the 50-occupant panic-hardware threshold is triggered." },
+        { "option": "Have the architect verify exit access doorway count and common path of travel for the reconfigured space against IBC Table 1006.2.1 using the actual child occupant load", "tradeoffs": "Confirms the reduced secure-door count does not create an separate egress deficiency independent of the locking-hardware question." }
+      ],
+      "confidence": "likely_secondary_source",
+      "verification_note": "Section numbering and requirements corroborated across multiple independent secondary sources (up.codes, idighardware.com), not read verbatim from ICC due to access blocks. Needs Scottsdale Fire Prevention/Building plan review sign-off on the specific room layout and occupant load."
+    },
+    {
+      "id": "ada-path-of-travel",
+      "category": "accessibility",
+      "question": "How much of this project's budget may be required for accessible path-of-travel upgrades given the scale of alteration and the occupancy change, and is this based on the alteration cost or the building's assessed value?",
+      "source_quote": "ADA compliance required throughout: ambulatory stalls, swing-out doors, 5-foot turning radius.",
+      "applicable_codes": [
+        { "code_body": "Federal ADA / DOJ Title III regulation", "adopted_by": "U.S. Department of Justice", "section": "28 CFR 36.403, Alterations: Path of travel; 2010 ADA Standards for Accessible Design Sec. 202.4", "url": "https://www.ecfr.gov/current/title-28/chapter-I/part-36/subpart-D/section-36.403", "edition_or_effective_date": "current" },
+        { "code_body": "Arizonans with Disabilities Act", "adopted_by": "State of Arizona, A.R.S. Sec. 41-1492 et seq., Arizona Administrative Code Title 10 Ch. 3 Art. 4", "section": "R10-3-401 through R10-3-412", "url": "https://regulations.justia.com/states/arizona/title-10/chapter-3/article-4/r10-3-401/", "edition_or_effective_date": "current, incorporates 2010 ADA Standards and 28 CFR 36.401-36.406 by reference" }
+      ],
+      "rule_in_plain_language": "This is commonly misunderstood as a percentage of the building's assessed value -- it is not. The rule is: when an alteration is made to a primary function area, the accessible path of travel from the site entrance through the altered area (plus the restrooms, drinking fountains, and phones serving it) must be brought up to current accessibility standards, up to a cost cap of 20 percent of the cost of that specific alteration. Beyond that cap the additional cost is considered disproportionate and is not required, but the 20 percent must still be spent, prioritized in this order: accessible entrance, then route to the altered area, then at least one accessible restroom, then phones/fountains.",
+      "problem_identified": { "exists": true, "severity": "moderate", "description": "For a project of this scale (97,910 SF, multi-phase, changing occupancy from Business to Assembly), the path-of-travel obligation is very likely to apply broadly and repeatedly -- each discrete phase of alteration triggers its own 20-percent-of-that-phase's-cost analysis for the route serving it. This is a budgeting and scoping issue more than a blocker, but it needs to be planned for rather than discovered during plan review." },
+      "proposed_solutions": [
+        { "option": "Document existing accessible-route deficiencies now (parking to entrance, entrance to each altered area, existing restroom compliance) as a baseline before construction", "tradeoffs": "Establishes what must be fixed and gives a defensible record if the disproportionality cap is invoked later." },
+        { "option": "Budget a per-phase contingency line equal to up to 20 percent of that phase's construction cost for path-of-travel upgrades", "tradeoffs": "Avoids a late-stage budget surprise; may still be less than full compliance would cost if deficiencies are extensive." }
+      ],
+      "confidence": "verified_primary_source",
+      "verification_note": "Confirm the specific IEBC alteration-classification level (Level 1/2/3) that applies to each phase with the City of Scottsdale, since that affects which A117.1 edition and threshold calculations apply."
+    },
+    {
+      "id": "restroom-door-swing-direction",
+      "category": "building",
+      "question": "Do the expanding restroom doors (women's restroom to approximately 15 stalls, men's restroom expanded accordingly) need to swing in the direction of egress travel under the IBC 50-person occupant load threshold?",
+      "source_quote": "Confirm door swing direction per IBC 50-person occupancy threshold.",
+      "applicable_codes": [
+        { "code_body": "2021 International Building Code (IBC)", "adopted_by": "City of Scottsdale (Chapter 10 not locally amended; section text unchanged from 2018 IBC)", "section": "1010.1.2.1, Direction of swing", "url": "https://up.codes/s/direction-of-swing", "edition_or_effective_date": "2021 IBC" }
+      ],
+      "rule_in_plain_language": "Side-hinged swinging doors, pivoted doors, and balanced doors must swing in the direction of egress travel where they serve a room or area with an occupant load of 50 or more, or a Group H occupancy. The threshold is based on the occupant load of the specific room or area the door serves, not automatically the occupant load of the larger assembly space it connects to. A 15-stall women's restroom and a similarly expanded men's restroom each have a room occupant load well under 50 even counting generously by fixture count, so on the plain text of this section the restroom doors themselves are not mandatorily required to swing in the direction of egress travel. The threshold clearly does apply to the main sanctuary/assembly space's own exit doors, which is a separate design question already understood to require sprinkler/occupant-load-appropriate egress design.",
+      "problem_identified": { "exists": false, "severity": "none", "description": "Likely not a blocker for the restroom doors specifically, based on the room-occupant-load reading of this section." },
+      "proposed_solutions": [],
+      "confidence": "likely_secondary_source",
+      "verification_note": "The room-vs-space occupant-load interpretation is professional consensus rather than a directly quotable definitional clause in the code. Recommend confirming this interpretation with the Scottsdale plans examiner in writing, since AHJ interpretation of 'area served' can vary, especially if the restroom vestibule/corridor lacks a separating door from the larger space."
+    }
+  ],
+  "related_codes_for_later": [
+    { "topic": "IBC 903.2.1.3 sprinkler trigger for Group A-3 (fire area over 12,000 SF or occupant load 300+)", "why_it_may_matter": "At 97,910 SF total across two phases, this project will almost certainly need to meet Group A sprinkler thresholds that a Business occupancy of similar size would not have triggered -- confirm current sprinkler coverage against this threshold." },
+    { "topic": "IBC 907.2.1 fire alarm trigger for Group A (manual alarm at 300+ occupants, voice/alarm communication at 1,000+)", "why_it_may_matter": "Relevant to whichever fire alarm/notification scope is planned for the converted Assembly occupancy." },
+    { "topic": "IPC Table 403.1 plumbing fixture counts for places of worship", "why_it_may_matter": "Governs the final required water closet, lavatory, and drinking fountain counts for the converted occupancy -- verify the restroom stall counts already being planned against this table with a licensed source." },
+    { "topic": "Baptistry cross-connection / backflow prevention for localized water heaters and fill lines", "why_it_may_matter": "Not yet researched in this pass -- the plumbing scope (localized water heaters, cold water fill, trench drains at three baptistry locations) may trigger cross-connection control or backflow prevention requirements under the adopted plumbing code that should be checked before rough-in." }
+  ],
+  "contacts": [
+    { "office": "City of Scottsdale Building Safety Division / One Stop Shop", "jurisdiction_level": "city", "phone": "(480) 312-2500", "address": "", "website": "https://www.scottsdaleaz.gov/planning-development" },
+    { "office": "Maricopa County Environmental Services Department, Plan Review & Construction Program", "jurisdiction_level": "county", "phone": "(602) 506-6824", "address": "", "website": "https://esd.maricopa.gov" },
+    { "office": "City of Scottsdale Fire Prevention", "jurisdiction_level": "city", "phone": "needs verification", "address": "", "website": "https://www.scottsdaleaz.gov" }
+  ],
+  "outputs": {
+    "google_doc_url": "https://docs.google.com/document/d/1hY-1J79stjicc5zrZg_tq071rQyhbN4C4LUM2k4CGEg/edit",
+    "artifact_url": "https://claude.ai/artifact/H6X6EeHKX87BWgssBSx64w"
+  }
+}

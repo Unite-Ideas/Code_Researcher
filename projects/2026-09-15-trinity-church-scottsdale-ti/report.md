@@ -74,20 +74,31 @@ confirm the establishment classification in writing before finalizing the cafe l
 door changes, restroom stall increase, baptistry plumbing, MEP changes) go in as field
 revisions after permit issuance, without resubmitting to the City of Scottsdale?
 
-**The code:** 2021 IBC §107.4 (Amended Construction Documents), unamended by Scottsdale;
-2021 IEBC Chapter 10 (Change of Occupancy), which governs this project's B-to-A conversion.
-Source: [Scottsdale's 2021 IBC amendment ordinance](https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-international-building-code-(ibc)-amendments.pdf)
-(read directly, confirms §107.4 is not locally amended) and
-[ICC -- IEBC Ch. 10](https://codes.iccsafe.org/content/IEBC2021P1/chapter-10-change-of-occupancy)
-(correct official address; ICC blocks automated verification, confirm in a normal browser).
+**The code:** 2021 IBC §107.4, Amended Construction Documents.
+Source: [Scottsdale's 2021 IBC amendment ordinance](https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-international-building-code-(ibc)-amendments.pdf).
+This is an amendment-only document: it was read page by page, and Sec. 31-6 amends
+Section 107 only at 107.2, 107.2.1.1/.1.2, 107.2.2, 107.2.6.1, 107.2.9/.10, and 107.3.1,
+then jumps straight to Section 109 -- §107.4 is not mentioned anywhere, which is how such a
+document shows "we left this exactly as the model code wrote it." There is no line to click
+through to for that reason; the full rule is quoted below instead, so no further link is
+needed to get the actual text -- this citation exists only as a paper trail for the
+"not locally amended" claim.
 
-**The rule:** Any change made during construction that is not in compliance with approved
-construction documents must be resubmitted as amended construction documents. No
-Scottsdale-specific written "field revision" threshold exists — the Building Official's
-judgment on the scope of the change governs. Egress door changes, security/lockdown door
-hardware, converting classroom space to lobby/assembly space (which intersects the
-occupancy reclassification already underway), new restroom fixtures, and new baptistry
-plumbing and water heaters are all plan-reviewed items under standard code administration.
+**The rule:** IBC §107.4 reads: "Work shall be installed in accordance with the approved
+construction documents, and any changes made during construction that are not in
+compliance with the approved construction documents shall be resubmitted for approval as
+an amended set of construction documents." No Scottsdale-specific written "field revision"
+threshold exists — the Building Official's judgment on the scope of the change governs.
+Egress door changes, security/lockdown door hardware, converting classroom space to
+lobby/assembly space, new restroom fixtures, and new baptistry plumbing and water heaters
+are all plan-reviewed items under standard code administration.
+
+*Note:* this project separately involves a change of occupancy (Business to Assembly),
+which is a different topic governed by 2021 IEBC Chapter 10 (specifically §§1011.4-1011.6)
+— see "Codes that may matter later" below for that citation with its specific sections. It
+does not answer this field-revision question and was removed from here after review; the
+sprinkler, fire alarm, and fixture-count consequences it triggers are already their own
+line items elsewhere in this report.
 
 **The problem:** This is a real process risk, not routine field-revision practice. If
 caught, likely outcomes include a stop-work order, a required retroactive amended-document
@@ -205,6 +216,12 @@ writing, since AHJ interpretation of "area served" can vary.
 
 ## Codes that may matter later for this project
 
+- **2021 IEBC Ch. 10, §§1011.4-1011.6** (Change of Occupancy) — the code that actually
+  requires the egress/occupant-load recalculation, height-and-area check, and
+  fire-protection threshold check triggered by the Business-to-Assembly conversion. This
+  is the umbrella citation; its specific consequences (sprinkler trigger, fire alarm
+  trigger, fixture-count table) are the next three items below, and are not a separate
+  action item.
 - **IBC §903.2.1.3** (sprinkler trigger for Group A-3: fire area over 12,000 SF, or
   occupant load 300+) — at 97,910 SF, this project will almost certainly need to meet
   Group A sprinkler thresholds a Business occupancy of similar size would not have.

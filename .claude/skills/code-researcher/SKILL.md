@@ -215,3 +215,22 @@ checkable later.
   aggregators when citing the operative rule.
 - When a jurisdiction cannot be determined from the document, ask rather than guessing —
   the whole pipeline depends on getting the jurisdiction stack right first.
+- Cite the smallest addressable unit — an actual section or subsection number — never a
+  bare chapter. "IEBC Chapter 10" spans a dozen sections; a reader who clicks through has
+  no way to know which one matters. If a chapter is genuinely the right level of citation
+  (e.g. summarizing several related sections at once), say which sections within it are
+  the operative ones.
+- One finding answers one question. Do not bundle a second code citation into a finding
+  just because it is thematically related (e.g. "this project also involves a change of
+  occupancy") — if it does not directly answer the question the finding poses, it belongs
+  in its own finding, in "codes that may matter later," or in the jurisdiction overview,
+  not folded into an unrelated finding's citation list.
+- An amendment-only ordinance (one that lists only what a jurisdiction changed, not the
+  full code text) cannot show a reader a section that jurisdiction left unamended — there
+  is nothing on the page to point at. When citing such a source to establish "this section
+  is unamended, so the base code text applies," say so explicitly, and make sure the base
+  code's operative text is quoted in full in `rule_in_plain_language` — never leave a
+  reader needing to click through to a paywalled or otherwise unbrowsable source (ICC's
+  site, for instance) just to learn what the rule actually says. If the finding already
+  quotes the rule, say plainly that the link is a paper trail, not something the reader
+  needs to open.

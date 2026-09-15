@@ -10,15 +10,9 @@ licensed architect (James A. Godwin, AZ Lic. 58860), the structural and MEP engi
 record, or the City of Scottsdale / Maricopa County plan reviewers. Every finding below
 states its confidence and what still needs verification.
 
-**A note on citation links:** the first pass of this report included three citation links
-(findings 2, 3, and 6 below) generated from a bare aggregator URL that, on manual re-check,
-actually opened a different state's copy of the code (Illinois in two cases, a Texas agency
-in one) rather than Arizona's. The section numbers and requirement text were still correct,
-but the links themselves were not. Those three are corrected below, each replaced with
-either the City of Scottsdale's own ordinance or a neutral industry-commentary source that
-does not misrepresent its jurisdiction. See `findings.json` in this project folder for the
-full `link_status`/`link_note` on every citation, including the ones that were already
-correct.
+*(Revision note: earlier citation links in this report pointed to the wrong state's copy of
+a code; corrected below. Full per-citation verification detail is in `findings.json` if
+ever needed, not repeated here.)*
 
 ## Project and jurisdiction
 
@@ -74,31 +68,18 @@ confirm the establishment classification in writing before finalizing the cafe l
 door changes, restroom stall increase, baptistry plumbing, MEP changes) go in as field
 revisions after permit issuance, without resubmitting to the City of Scottsdale?
 
-**The code:** 2021 IBC §107.4, Amended Construction Documents.
-Source: [Scottsdale's 2021 IBC amendment ordinance](https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-international-building-code-(ibc)-amendments.pdf).
-This is an amendment-only document: it was read page by page, and Sec. 31-6 amends
-Section 107 only at 107.2, 107.2.1.1/.1.2, 107.2.2, 107.2.6.1, 107.2.9/.10, and 107.3.1,
-then jumps straight to Section 109 -- §107.4 is not mentioned anywhere, which is how such a
-document shows "we left this exactly as the model code wrote it." There is no line to click
-through to for that reason; the full rule is quoted below instead, so no further link is
-needed to get the actual text -- this citation exists only as a paper trail for the
-"not locally amended" claim.
+**The code:** 2021 IBC, Chapter 1, §107.4, Amended Construction Documents.
+Source: [ICC — 2021 IBC §107.4](https://codes.iccsafe.org/s/IBC2021P1/chapter-1-scope-and-administration/IBC2021P1-Ch01-Sec107.4)
+(Scottsdale does not locally amend this section, so the base code text applies as-is).
 
-**The rule:** IBC §107.4 reads: "Work shall be installed in accordance with the approved
-construction documents, and any changes made during construction that are not in
-compliance with the approved construction documents shall be resubmitted for approval as
-an amended set of construction documents." No Scottsdale-specific written "field revision"
-threshold exists — the Building Official's judgment on the scope of the change governs.
-Egress door changes, security/lockdown door hardware, converting classroom space to
-lobby/assembly space, new restroom fixtures, and new baptistry plumbing and water heaters
-are all plan-reviewed items under standard code administration.
-
-*Note:* this project separately involves a change of occupancy (Business to Assembly),
-which is a different topic governed by 2021 IEBC Chapter 10 (specifically §§1011.4-1011.6)
-— see "Codes that may matter later" below for that citation with its specific sections. It
-does not answer this field-revision question and was removed from here after review; the
-sprinkler, fire alarm, and fixture-count consequences it triggers are already their own
-line items elsewhere in this report.
+**The rule:** "Work shall be installed in accordance with the approved construction
+documents, and any changes made during construction that are not in compliance with the
+approved construction documents shall be resubmitted for approval as an amended set of
+construction documents." The Building Official's judgment on the scope of the change
+governs, since the code gives no numeric threshold. Egress door changes, security/lockdown
+door hardware, converting classroom space to lobby/assembly space, new restroom fixtures,
+and new baptistry plumbing and water heaters are all plan-reviewed items under standard
+code administration.
 
 **The problem:** This is a real process risk, not routine field-revision practice. If
 caught, likely outcomes include a stop-work order, a required retroactive amended-document

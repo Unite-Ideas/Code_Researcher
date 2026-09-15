@@ -126,13 +126,20 @@ Before including any URL in a finding:
    - Check whether the aggregator has a book for the *correct* jurisdiction (many places,
      UpCodes included, only cover certain states/cities — search `up.codes/codes/<state>`
      or equivalent before assuming coverage exists) and link to that instead.
-   - If no correct-jurisdiction version exists on that site, prefer the official
-     source: the jurisdiction's own adopted-code ordinance or amendment PDF (even if it
-     only shows the amendment, not full base-code text — pair it with the plain-language
-     rule already written into the finding, which does not depend on the link), or a
-     named, neutral secondary/industry-commentary source that does not itself claim to be
-     a specific jurisdiction's official page (so a reader is not misled about what they
-     are clicking into).
+   - If no correct-jurisdiction version exists on that site, check whether ICC's own site
+     hosts the *base model code* directly, independent of any state — it does, at URLs
+     shaped like `codes.iccsafe.org/s/<CODE><EDITION>P<part>/<chapter-slug>/<CODE><EDITION>P<part>-Ch<NN>-Sec<section>`
+     (e.g. `codes.iccsafe.org/s/IBC2021P1/chapter-1-scope-and-administration/IBC2021P1-Ch01-Sec107.4`).
+     Confirm this only when the section in question is **not locally amended** by the
+     jurisdiction (checked separately against that jurisdiction's own amendment ordinance)
+     — if it is amended, cite the jurisdiction's amendment instead, since the base text no
+     longer reflects the actual local rule.
+   - If neither exists, prefer the jurisdiction's own adopted-code ordinance or amendment
+     PDF (even if it only shows the amendment, not full base-code text — pair it with the
+     plain-language rule already written into the finding, which does not depend on the
+     link), or a named, neutral secondary/industry-commentary source that does not itself
+     claim to be a specific jurisdiction's official page (so a reader is not misled about
+     what they are clicking into).
 3. **If an official/primary source blocks automated verification** (a 403, a login wall,
    a bot check) that is a *different* problem from linking to the wrong jurisdiction, and
    should be recorded differently: the address itself is still the correct one to cite,
@@ -145,6 +152,16 @@ Before including any URL in a finding:
    (right address, but content blocked from automated confirmation), or
    `corrected_after_review` (an initial link was found to be wrong and replaced — say what
    it was and why). Never leave a citation link unverified without saying so.
+5. **Keep the verification trail out of the reader-facing report.** The check in step 2
+   (confirming a section is not locally amended, checking whether an aggregator covers the
+   jurisdiction, ruling out a wrong-jurisdiction link) is real work worth recording, but it
+   belongs in `findings.json`'s `link_note` field, not in `report.md` or the Artifact. A
+   reader asking "what does the code say about my problem" does not want a narrated tour of
+   how the citation was tracked down unless that process changed the answer (e.g. the
+   section genuinely *is* locally amended, so both the base code and the amendment matter,
+   or a source could not be verified at all and the reader needs to know that before
+   relying on it). Default to the plain citation, the link, and the rule; say only what the
+   reader needs to act, not how you got there.
 
 ## 5. Synthesize findings and decide what matters
 

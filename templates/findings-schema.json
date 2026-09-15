@@ -29,8 +29,10 @@
           "code_body": "e.g. FDA Food Code, 2017 Edition",
           "adopted_by": "e.g. Maricopa County Environmental Services, by reference",
           "section": "citation, e.g. Chapter 5, Section 5-202.12",
-          "url": "authoritative source URL",
-          "edition_or_effective_date": "string"
+          "url": "the URL a reader will actually click",
+          "edition_or_effective_date": "string",
+          "link_status": "verified_correct | correct_address_unverified | corrected_after_review",
+          "link_note": "what was actually confirmed about this URL, and by what method -- see Ground rules in SKILL.md. Required whenever link_status is not verified_correct."
         }
       ],
       "rule_in_plain_language": "string, applied to this project's specifics",

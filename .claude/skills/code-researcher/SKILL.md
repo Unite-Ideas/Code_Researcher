@@ -99,6 +99,52 @@ the same message so they execute concurrently) with clear instructions to each a
 5. Note the edition/effective date of what was found, since code editions change.
 6. Report back confidence: verified against primary source, likely but from a secondary
    source, or unresolved/contact AHJ directly.
+7. **Verify every URL actually resolves to the claimed jurisdiction before citing it** —
+   see "Verifying links" below. This is not optional and is a distinct check from
+   confidence: a citation can be substantively correct while its link points somewhere
+   else entirely.
+
+### Verifying links, not just facts
+
+Getting the rule right and getting the link right are two different checks — a section
+number can be correct while the URL attached to it shows a different state's page. This
+class of mistake is easy to make and easy to miss: aggregator sites that host many
+jurisdictions' code books (UpCodes, Municode, and similar) often use a bare, generic URL
+for a given section (e.g. `up.codes/s/direction-of-swing`) that resolves to whichever
+jurisdiction the site defaults to for that slug — not necessarily, and often not, the
+project's jurisdiction. A researcher (human or agent) can read a correct-looking section
+number and requirement text on such a page and not notice the breadcrumb at the top says
+"Illinois" or "Texas" instead of the state actually being researched.
+
+Before including any URL in a finding:
+
+1. **Fetch the URL and check what it actually shows** — the breadcrumb, jurisdiction
+   label, or title on the page itself, not just the slug or the section number. Do not
+   assume a generic-looking aggregator URL is jurisdiction-correct without checking.
+2. **If it resolves to the wrong jurisdiction** (as with UpCodes' bare section URLs),
+   do not use it, even with a caveat. Instead:
+   - Check whether the aggregator has a book for the *correct* jurisdiction (many places,
+     UpCodes included, only cover certain states/cities — search `up.codes/codes/<state>`
+     or equivalent before assuming coverage exists) and link to that instead.
+   - If no correct-jurisdiction version exists on that site, prefer the official
+     source: the jurisdiction's own adopted-code ordinance or amendment PDF (even if it
+     only shows the amendment, not full base-code text — pair it with the plain-language
+     rule already written into the finding, which does not depend on the link), or a
+     named, neutral secondary/industry-commentary source that does not itself claim to be
+     a specific jurisdiction's official page (so a reader is not misled about what they
+     are clicking into).
+3. **If an official/primary source blocks automated verification** (a 403, a login wall,
+   a bot check) that is a *different* problem from linking to the wrong jurisdiction, and
+   should be recorded differently: the address itself is still the correct one to cite,
+   but say plainly that the content could not be confirmed by fetch and how a person
+   should verify it instead (a normal browser, a licensed code-database account, or the
+   jurisdiction's own published ordinance).
+4. **Record the outcome on the citation itself**, using `link_status` and `link_note` in
+   `findings.json` (see `templates/findings-schema.json`): `verified_correct` (fetched and
+   confirmed to show the right jurisdiction/edition), `correct_address_unverified`
+   (right address, but content blocked from automated confirmation), or
+   `corrected_after_review` (an initial link was found to be wrong and replaced — say what
+   it was and why). Never leave a citation link unverified without saying so.
 
 ## 5. Synthesize findings and decide what matters
 
@@ -150,7 +196,11 @@ checkable later.
    page from `findings.json` — one card per topic with the code citation and a link to the
    actual code, grouped by severity/category, plus a jurisdiction/contacts panel and a
    "codes that may matter later" panel for adjacent topics the research surfaced but that
-   were not directly asked about.
+   were not directly asked about. Whenever a finding's verify-note names an office that also
+   appears in the contacts panel, give that office an element `id` in the contacts panel and
+   turn the mention in the verify-note into an in-page link to it (`href="#that-id"`,
+   intercepted in JS to smooth-scroll and briefly flash/highlight the target) so a reader can
+   jump straight from "who do I need to call" to that office's actual number.
 5. Append a row to **`projects/index.md`**: date, project name, requester, jurisdiction,
    links to the Google Doc and the Artifact.
 

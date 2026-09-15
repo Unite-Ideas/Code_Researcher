@@ -10,6 +10,16 @@ licensed architect (James A. Godwin, AZ Lic. 58860), the structural and MEP engi
 record, or the City of Scottsdale / Maricopa County plan reviewers. Every finding below
 states its confidence and what still needs verification.
 
+**A note on citation links:** the first pass of this report included three citation links
+(findings 2, 3, and 6 below) generated from a bare aggregator URL that, on manual re-check,
+actually opened a different state's copy of the code (Illinois in two cases, a Texas agency
+in one) rather than Arizona's. The section numbers and requirement text were still correct,
+but the links themselves were not. Those three are corrected below, each replaced with
+either the City of Scottsdale's own ordinance or a neutral industry-commentary source that
+does not misrepresent its jurisdiction. See `findings.json` in this project folder for the
+full `link_status`/`link_note` on every citation, including the ones that were already
+correct.
+
 ## Project and jurisdiction
 
 - **Project:** Tenant improvement across two floors, 97,910 SF total (Phase I West 56,966
@@ -31,6 +41,10 @@ be replaced with a hand sanitizer station?
 
 **The code:** Maricopa County Environmental Health Code Ch. VIII Sec. 2, adopting the FDA
 Food Code 2017 Edition (§2-301.12, 2-301.14, 2-301.16(A)(3), 5-203.11, 5-204.11, 5-205.11).
+Source: [Maricopa County ordinance](https://www.maricopa.gov/DocumentCenter/View/5477/Chapter-8-Section-2---Food-Establishments-PDF)
+and [FDA Food Code 2017 text](https://teamhcso.com/getattachment/f70a54e6-43e7-4983-abe2-843a578bbe2d/attachment-3-applicable-fda-food-code.pdf)
+(a county-hosted mirror -- fda.gov's own page blocks automated verification, so this is the
+copy actually read for this research).
 
 **The rule:** A dedicated hand sink is required at any bar preparing TCS food or drinks
 (espresso, steamed milk qualifies). Hand sanitizer is only ever a supplement applied after
@@ -62,6 +76,10 @@ revisions after permit issuance, without resubmitting to the City of Scottsdale?
 
 **The code:** 2021 IBC §107.4 (Amended Construction Documents), unamended by Scottsdale;
 2021 IEBC Chapter 10 (Change of Occupancy), which governs this project's B-to-A conversion.
+Source: [Scottsdale's 2021 IBC amendment ordinance](https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-international-building-code-(ibc)-amendments.pdf)
+(read directly, confirms §107.4 is not locally amended) and
+[ICC -- IEBC Ch. 10](https://codes.iccsafe.org/content/IEBC2021P1/chapter-10-change-of-occupancy)
+(correct official address; ICC blocks automated verification, confirm in a normal browser).
 
 **The rule:** Any change made during construction that is not in compliance with approved
 construction documents must be resubmitted as amended construction documents. No
@@ -97,6 +115,8 @@ lockable security door on the kids ministry hallway, given the reduced number of
 doors?
 
 **The code:** 2021 IBC §1010.2.8, Locking Arrangements in Educational Occupancies.
+Source: [iDigHardware -- classroom door lock requirements](https://idighardware.com/2023/03/decoded-current-requirements-of-the-i-codes-for-classroom-door-locks/)
+(neutral industry commentary; confirmed to load and discuss this exact section).
 
 **The rule:** A door may be locked to keep intruders out, provided it is unlockable from
 outside with a key or approved means, the interior egress hardware remains fully
@@ -125,6 +145,10 @@ upgrades, and is it based on alteration cost or building assessed value?
 
 **The code:** 28 CFR 36.403 (federal ADA/DOJ), 2010 ADA Standards §202.4, Arizona
 Administrative Code R10-3-401 through 412.
+Source: [eCFR 36.403](https://www.ecfr.gov/current/title-28/chapter-I/part-36/subpart-D/section-36.403)
+(federal, read directly) and [Arizona R10-3-401](https://regulations.justia.com/states/arizona/title-10/chapter-3/article-4/r10-3-401/)
+(could not be re-verified by automated fetch just now -- cross-check against the Arizona
+Secretary of State's own PDF if relying on this citation).
 
 **The rule:** This is commonly misunderstood as a percentage of the building's assessed
 value — it is not. The cap is 20% of the cost of the specific alteration to the primary
@@ -146,6 +170,8 @@ planning rather than late discovery.
 egress hardware?
 
 **The code:** 2021 IBC §1010.2.10, Access-Controlled Egress Doors.
+Source: [iDigHardware -- access-controlled egress doors](https://idighardware.com/2022/08/2021-ibc-commentary-on-egress-doors-with-access-control/)
+(neutral industry commentary; confirmed to load).
 
 **The rule:** Where a reader controls the egress-side hardware of a required exit door, the
 code requires an approach sensor that unlocks the door, fail-safe unlocking on power loss,
@@ -165,6 +191,8 @@ door, which locking topology is used.
 travel under the IBC 50-person threshold?
 
 **The code:** 2021 IBC §1010.1.2.1, Direction of swing.
+Source: [iDigHardware -- door swing & occupant load](https://idighardware.com/2012/10/door-swing-and-encroachment/)
+(neutral industry commentary; confirmed to load and quote this exact requirement).
 
 **The rule:** This applies where a door serves a room or area with an occupant load of 50
 or more. A 15-stall women's restroom and similarly expanded men's restroom each have a room

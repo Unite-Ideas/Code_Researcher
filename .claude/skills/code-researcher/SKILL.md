@@ -145,7 +145,35 @@ Before including any URL in a finding:
    should be recorded differently: the address itself is still the correct one to cite,
    but say plainly that the content could not be confirmed by fetch and how a person
    should verify it instead (a normal browser, a licensed code-database account, or the
-   jurisdiction's own published ordinance).
+   jurisdiction's own published ordinance) — or try rendering it with a real browser
+   first, since a bot-block on a plain HTTP fetch often does not stop an actual browser:
+
+   This environment has a headless Chromium at `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
+   Outbound HTTPS in this environment goes through a TLS-terminating proxy (see
+   `/root/.ccr/README.md`); Chromium does not trust its certificate by default, which
+   shows up as `net::ERR_CERT_AUTHORITY_INVALID`, not as the site's own block. Fix it by
+   pinning the proxy's own root CA(s) via SPKI, which trusts only that specific known
+   certificate rather than disabling verification generally:
+
+   ```
+   for f in <split ca-bundle.crt into per-cert files, find the ones whose subject
+             matches the proxy's own CA name>; do
+     openssl x509 -in "$f" -pubkey -noout | openssl pkey -pubin -outform der \
+       | openssl dgst -sha256 -binary | base64
+   done
+   ```
+
+   Then render with `--headless=new --no-sandbox --disable-gpu
+   --ignore-certificate-errors-spki-list=<hash1>,<hash2> --virtual-time-budget=8000
+   --dump-dom <url>` and read the dumped HTML for the actual section content (search for
+   the section's anchor id, e.g. `id="IBC2021P1_Ch01_Sec107.4"` — many ICC pages are a
+   single-page app, so the useful text is deep in the rendered DOM alongside a lot of UI
+   markup, not in a clean article body). This needs one one-time setup: a `Bash(certutil:*)`
+   permission in `.claude/settings.local.json` so `certutil -A -n <name> -t "CT,C,C" -i
+   /root/.ccr/ca-bundle.crt -d sql:$HOME/.pki/nssdb` can run (modern Chromium's own root
+   store, not NSS, is actually what needs the SPKI pin above — the certutil import is for
+   completeness/other NSS-based tools). Ask the user to add that permission if it is
+   missing; do not try to route around a missing permission any other way.
 4. **Record the outcome on the citation itself**, using `link_status` and `link_note` in
    `findings.json` (see `templates/findings-schema.json`): `verified_correct` (fetched and
    confirmed to show the right jurisdiction/edition), `correct_address_unverified`

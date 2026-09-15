@@ -6,4 +6,4 @@ projects" page.
 
 | Date | Project | Requester | Jurisdiction | Report (Google Doc) | Card site (Artifact) |
 |------|---------|-----------|--------------|----------------------|------------------------|
-| 2026-09-15 | [The Trinity Church - West and East Phase T.I.](2026-09-15-trinity-church-scottsdale-ti/report.md) | UNITE Plan Drafting Team | Scottsdale, Maricopa County, Arizona | [Google Doc](https://docs.google.com/document/d/12x2RxVDz33vTrg8YJqp2vc-zyRZzvWZe7mKiE0Yay-8/edit) | [Artifact](https://claude.ai/artifact/H6X6EeHKX87BWgssBSx64w) |
+| 2026-09-15 | [The Trinity Church - West and East Phase T.I.](2026-09-15-trinity-church-scottsdale-ti/report.md) | UNITE Plan Drafting Team | Scottsdale, Maricopa County, Arizona | [Google Doc](https://docs.google.com/document/d/1XyWU7Q4eWhJ1KFBlqv0x4AnqxmeTQEC_dhWgN4Uq6nw/edit) | [Artifact](https://claude.ai/artifact/H6X6EeHKX87BWgssBSx64w) |

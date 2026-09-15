@@ -1,0 +1,59 @@
+{
+  "$comment": "Data contract for projects/<slug>/findings.json. Kept stable on purpose so a future WordPress front end can render it without changing the research pipeline.",
+  "project": {
+    "name": "string",
+    "slug": "string",
+    "date": "YYYY-MM-DD",
+    "requester": "string",
+    "source_documents": [
+      { "title": "string", "url": "string or null" }
+    ],
+    "project_type": "new construction | addition | plan change | initial consult | other",
+    "description": "one to three sentences of project context"
+  },
+  "jurisdiction": {
+    "state": "string",
+    "county": "string or null",
+    "city": "string or null",
+    "special_districts": ["string"],
+    "notes": "string, e.g. why jurisdiction was ambiguous if it was"
+  },
+  "findings": [
+    {
+      "id": "string, stable slug for this finding",
+      "category": "zoning | building | fire_life_safety | accessibility | health_food_service | plumbing | electrical_mechanical | other",
+      "question": "the question as asked or as inferred",
+      "source_quote": "the line(s) in the source document that triggered this finding, or null if purely inferred",
+      "applicable_codes": [
+        {
+          "code_body": "e.g. FDA Food Code, 2017 Edition",
+          "adopted_by": "e.g. Maricopa County Environmental Services, by reference",
+          "section": "citation, e.g. Chapter 5, Section 5-202.12",
+          "url": "authoritative source URL",
+          "edition_or_effective_date": "string"
+        }
+      ],
+      "rule_in_plain_language": "string, applied to this project's specifics",
+      "problem_identified": {
+        "exists": true,
+        "severity": "blocker | significant | minor | none",
+        "description": "string"
+      },
+      "proposed_solutions": [
+        { "option": "string", "tradeoffs": "string" }
+      ],
+      "confidence": "verified_primary_source | likely_secondary_source | needs_verification",
+      "verification_note": "standing note on what still needs architect/engineer/AHJ sign-off"
+    }
+  ],
+  "related_codes_for_later": [
+    { "topic": "string", "why_it_may_matter": "string" }
+  ],
+  "contacts": [
+    { "office": "string", "jurisdiction_level": "state | county | city", "phone": "string", "address": "string", "website": "string" }
+  ],
+  "outputs": {
+    "google_doc_url": "string or null",
+    "artifact_url": "string or null"
+  }
+}

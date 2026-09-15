@@ -1,0 +1,8 @@
+name = "code-research-slack-relay"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Secrets (never put these here -- set with `wrangler secret put <NAME>`):
+#   SLACK_SIGNING_SECRET
+#   GITHUB_TOKEN
+#   GITHUB_REPO

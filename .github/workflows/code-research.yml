@@ -1,0 +1,173 @@
+name: Code Research (automated)
+
+# Fired by the Slack /code-research slash command via a small relay (see
+# slack-integration/) that turns the Slack request into this repository_dispatch event.
+#
+# Claude only ever writes files here -- it has no Bash access and no git/GitHub
+# credentials of its own (see the scoped --allowedTools list below), so it cannot commit,
+# push, or touch anything outside the working tree it's given. This workflow's own steps
+# do all git/PR work afterward, on a dedicated branch, so a human reviews and merges the
+# actual publish to main/GitHub Pages -- nothing goes live unattended.
+on:
+  repository_dispatch:
+    types: [code-research]
+
+concurrency:
+  group: code-research
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Create working branch
+        id: branch
+        run: |
+          BRANCH="automation/code-research-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
+          echo "name=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Run code-researcher skill
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            /code-research
+
+            You are running headlessly in GitHub Actions, triggered by a Slack slash
+            command. Follow SKILL.md's notes for this (no Google Drive connector, no
+            Artifact tool -- publish the HTML report under docs/reports/<slug>/ instead
+            and update docs/index.html).
+
+            Requested by: ${{ github.event.client_payload.user_name }}
+            Input from Slack (a Google Doc link, or pasted context -- read it for what it
+            actually is): ${{ github.event.client_payload.text }}
+
+            You have no Bash access and no git credentials in this environment by design
+            -- just read and write files. Do not attempt to run git, curl, or any shell
+            command; a separate step in this workflow handles committing, branching, and
+            opening a pull request once you are done. Confirm your work by re-reading the
+            files you wrote, not by shelling out.
+
+            When you are completely finished (all files written, library updated,
+            projects/index.md updated), write a summary to run-outputs.json at the repo
+            root, replacing any previous contents, with this exact shape:
+
+            {
+              "status": "ok",
+              "project_name": "string",
+              "slug": "string",
+              "jurisdiction": "string, e.g. Scottsdale, Maricopa County, Arizona",
+              "google_doc_url": "string or null",
+              "pages_path": "docs/reports/<slug>/ -- the relative path you published to",
+              "num_findings": 0,
+              "num_significant": 0,
+              "summary": "one short paragraph, plain language, for a Slack message"
+            }
+
+            If you cannot complete the research (jurisdiction genuinely undeterminable,
+            input unreadable, etc.), still write run-outputs.json with "status": "error"
+            and a "message" field explaining what you need -- do not leave the file
+            missing and do not guess your way past a real blocker.
+          claude_args: |
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,Task"
+            --model claude-opus-5
+
+      - name: Read run outcome
+        id: outcome
+        if: always()
+        run: |
+          if [ -f run-outputs.json ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request with the results
+        id: pr
+        if: always() && steps.outcome.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_BY: ${{ github.event.client_payload.user_name }}
+          BRANCH: ${{ steps.branch.outputs.name }}
+        run: |
+          STATUS=$(jq -r '.status // "error"' run-outputs.json)
+          if [ "$STATUS" != "ok" ]; then
+            echo "created=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "created=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          PROJECT=$(jq -r '.project_name // "Untitled project"' run-outputs.json)
+          git config user.name "code-researcher-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Code research: ${PROJECT} (requested by ${REQUESTED_BY})"
+          git push -u origin "$BRANCH"
+
+          PR_URL=$(gh pr create \
+            --title "Code research: ${PROJECT}" \
+            --body "Requested via Slack by ${REQUESTED_BY}. Automated run -- see run-outputs.json and the workflow log for details. Merging this publishes the report to GitHub Pages." \
+            --base main --head "$BRANCH")
+          echo "created=true" >> "$GITHUB_OUTPUT"
+          echo "url=$PR_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Notify Slack — success
+        if: always() && steps.outcome.outputs.found == 'true' && steps.pr.outputs.created == 'true'
+        env:
+          REQUESTED_BY: ${{ github.event.client_payload.user_name }}
+        run: |
+          PROJECT=$(jq -r '.project_name // "Untitled project"' run-outputs.json)
+          JURISDICTION=$(jq -r '.jurisdiction // "unknown jurisdiction"' run-outputs.json)
+          SUMMARY=$(jq -r '.summary // ""' run-outputs.json)
+          DOC_URL=$(jq -r '.google_doc_url // empty' run-outputs.json)
+          PAGES_PATH=$(jq -r '.pages_path // empty' run-outputs.json)
+          PAGES_URL="https://${{ github.repository_owner }}.github.io/$(echo '${{ github.repository }}' | cut -d/ -f2)/${PAGES_PATH#docs/}"
+          NUM_FINDINGS=$(jq -r '.num_findings // 0' run-outputs.json)
+          NUM_SIG=$(jq -r '.num_significant // 0' run-outputs.json)
+          TEXT=":mag: *Code research ready for review: ${PROJECT}*\n_${JURISDICTION}_ — ${NUM_FINDINGS} findings, ${NUM_SIG} significant\n${SUMMARY}\n\nRequested by ${REQUESTED_BY}\n<${{ steps.pr.outputs.url }}|Review the pull request> — once merged, live at ${PAGES_URL}"
+          if [ -n "$DOC_URL" ]; then
+            TEXT="${TEXT}\n<${DOC_URL}|Google Doc draft>"
+          fi
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data "$(jq -n --arg text "$TEXT" '{text: $text}')" \
+            "${{ secrets.SLACK_WEBHOOK_URL }}"
+
+      - name: Notify Slack — no changes produced
+        if: always() && steps.outcome.outputs.found == 'true' && steps.pr.outputs.created == 'false'
+        env:
+          REQUESTED_BY: ${{ github.event.client_payload.user_name }}
+        run: |
+          STATUS=$(jq -r '.status // "error"' run-outputs.json)
+          if [ "$STATUS" = "ok" ]; then
+            TEXT=":warning: *Code research finished but produced no file changes* for ${REQUESTED_BY}'s request — check <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|the run log>."
+          else
+            MESSAGE=$(jq -r '.message // "No details given."' run-outputs.json)
+            TEXT=":warning: *Code research could not finish*\n${MESSAGE}\n\nRequested by ${REQUESTED_BY} — <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|see the run log>."
+          fi
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data "$(jq -n --arg text "$TEXT" '{text: $text}')" \
+            "${{ secrets.SLACK_WEBHOOK_URL }}"
+
+      - name: Notify Slack — hard failure
+        if: always() && steps.outcome.outputs.found == 'false'
+        env:
+          REQUESTED_BY: ${{ github.event.client_payload.user_name }}
+        run: |
+          TEXT=":x: *Code research run failed before producing a report*\nRequested by ${REQUESTED_BY} — <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|see the run log>."
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data "$(jq -n --arg text "$TEXT" '{text: $text}')" \
+            "${{ secrets.SLACK_WEBHOOK_URL }}"

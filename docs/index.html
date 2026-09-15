@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Researcher — Reports</title>
+<style>
+  :root {
+    --paper: #f5f6f1;
+    --ink: #1a2233;
+    --ink-soft: #4a5568;
+    --ink-faint: #7c8494;
+    --line: #dcdfd5;
+    --surface: #ffffff;
+    --accent: #1f4e8c;
+    --accent-soft: #e7edf6;
+    --shadow: 0 1px 2px rgba(26,34,51,0.06), 0 4px 14px rgba(26,34,51,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14181f;
+      --ink: #e7e9ee;
+      --ink-soft: #a7adba;
+      --ink-faint: #6b7280;
+      --line: #2a3040;
+      --surface: #1c212b;
+      --accent: #7ba7e6;
+      --accent-soft: #22314a;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 18px rgba(0,0,0,0.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding-inline: 20px;
+    padding-block: 32px 56px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  h1 { font-family: "Big Shoulders Display", "Archivo Black", sans-serif; font-size: clamp(28px, 5vw, 38px); margin: 0 0 6px; }
+  .sub { color: var(--ink-soft); font-size: 14.5px; margin-bottom: 28px; }
+  .sub a { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; box-shadow: var(--shadow); }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: top; }
+  th { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); background: var(--accent-soft); }
+  tr:last-child td { border-bottom: none; }
+  a.report-link { font-weight: 600; }
+  .empty { color: var(--ink-faint); font-style: italic; padding: 18px 14px; }
+  footer { margin-top: 28px; font-size: 12.5px; color: var(--ink-faint); }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<div class="wrap">
+  <h1>Code Researcher — Reports</h1>
+  <div class="sub">Every code research run published from Slack or Claude Code, newest first. See the <a href="https://github.com/Unite-Ideas/Code_Researcher" target="_blank" rel="noopener">repo</a> for source documents, the persistent jurisdiction library, and raw findings data.</div>
+  <table>
+    <thead>
+      <tr><th>Date</th><th>Project</th><th>Jurisdiction</th><th>Requester</th><th>Report</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">2026-09-15</td>
+        <td>The Trinity Church &mdash; West &amp; East Phase T.I.</td>
+        <td>Scottsdale, Maricopa County, Arizona</td>
+        <td>UNITE Plan Drafting Team</td>
+        <td><a class="report-link" href="reports/2026-09-15-trinity-church-scottsdale-ti/">View report &rarr;</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <footer>Research aid, not a compliance sign-off. Every finding should be confirmed with a licensed architect, engineer, or the local authority having jurisdiction before being relied on for construction or permitting decisions.</footer>
+</div>
+</body>
+</html>

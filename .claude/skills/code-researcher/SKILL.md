@@ -25,7 +25,13 @@ GitHub Actions):** a Google Doc MCP tool will not exist in that environment. If 
 Google Doc link and no Drive tool is available, fetch its plain-text export instead —
 `https://docs.google.com/document/d/<DOC_ID>/export?format=txt` — which works for any doc
 shared as "anyone with the link can view." If that 403s, say plainly in the output that the
-doc needs link-sharing enabled and stop rather than guessing at its content.
+doc needs link-sharing enabled and stop rather than guessing at its content. In this mode
+you also have no Bash tool and no git credentials by design — only read/write file tools.
+Do not try to shell out for anything (verifying a file was written, checking git status,
+the headless-Chrome citation-verification technique below). Confirm your own work by
+re-reading files you wrote, and if a citation can't be verified without Bash, record that
+honestly via `link_status`/`link_note` rather than working around the missing tool. A
+separate step in whatever invoked you handles committing and publishing once you finish.
 
 Read everything fully before extracting anything. These documents are messy on purpose:
 transcripts, day-long site visit logs, meeting summaries. Most of the content will be

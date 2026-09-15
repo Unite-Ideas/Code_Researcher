@@ -33,8 +33,10 @@ It produces:
 
 Anyone in the office can run `/code-research <Google Doc link or short description>` in
 Slack. It kicks off the same skill fully automated in GitHub Actions — no one has to sit in
-a Claude Code chat approving tool calls — and posts the finished report link back to the
-channel a few minutes later. See `slack-integration/README.md` for setup and
+a Claude Code chat approving tool calls — and posts a pull request with the findings back
+to the channel a few minutes later. Claude has no git access in that automated run at all
+(a scoped tool list, no Bash); a human on the team reviews and merges the PR, which is what
+actually publishes the report. See `slack-integration/README.md` for setup and
 `.github/workflows/code-research.yml` for what actually runs.
 
 Since there's no claude.ai chat session behind this (no Artifact tool, no personal Google

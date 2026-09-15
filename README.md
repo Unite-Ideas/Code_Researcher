@@ -29,27 +29,44 @@ It produces:
   jurisdiction starts from what we already know instead of researching from zero.
 - An entry in `projects/index.md` so every research run stays discoverable.
 
-## Phase 2 (planned): WordPress + Slack front end
+## Phase 2 (live): Slack `/code-research`
 
-The pipeline is being built so the "brain" (extract → research → synthesize → persist →
-report) is not glued to any one front end. Planned surfaces, once Phase 1 is proven out:
+Anyone in the office can run `/code-research <Google Doc link or short description>` in
+Slack. It kicks off the same skill fully automated in GitHub Actions — no one has to sit in
+a Claude Code chat approving tool calls — and posts the finished report link back to the
+channel a few minutes later. See `slack-integration/README.md` for setup and
+`.github/workflows/code-research.yml` for what actually runs.
 
-- A WordPress page: text box + file upload, submits a request, emails/Slacks the requester
-  the finished Google Doc and Artifact links when done.
-- A WordPress index page listing every past research project (title, requester, date) with
-  a table of contents linking into each project's findings.
-- A Slack command: `/code-research <plain text context>` with attached files or Google Doc
-  links.
+Since there's no claude.ai chat session behind this (no Artifact tool, no personal Google
+Drive connector), the automated path publishes a self-contained HTML report to
+`docs/reports/<slug>/` instead, served over GitHub Pages at
+`https://unite-ideas.github.io/Code_Researcher/`, and reads input Google Docs via their
+public link-shared export rather than an OAuth connector. Everything else — the research
+depth, the persistent library, the citation-verification rules — is identical to running it
+interactively in Claude Code; see the "headless run" notes throughout
+`.claude/skills/code-researcher/SKILL.md`.
+
+### Still planned
+
+- A WordPress page as an alternate front door (text box + file upload) for anyone who'd
+  rather not use Slack, posting into the same `repository_dispatch` pipeline.
+- Feeding private (not just link-shared) Google Docs into the automated path via a Drive
+  service account.
 
 ## Repository layout
 
 ```
 .claude/skills/code-researcher/SKILL.md   the research pipeline the skill follows
+.github/workflows/code-research.yml       runs the skill headlessly, triggered by Slack
+slack-integration/                        Cloudflare Worker relay + setup README
+docs/                                     GitHub Pages site (published reports)
+  index.md / index.html                   master listing of every published report
+  reports/<slug>/                         one static HTML report per project
 library/                                   persistent jurisdiction + code knowledge base
   jurisdictions/<state>/<county>/<city>/   codes, adoption chains, contacts per place
   topics/                                  cross-jurisdiction reference notes (e.g. ADA
                                             20% rule, food code adoption chains)
-projects/                                  one folder per research run
+projects/                                  one folder per research run (source of truth)
   index.md                                 master list of all projects run so far
 templates/
   findings-schema.json                     the data contract for a project's findings.json

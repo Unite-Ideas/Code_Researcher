@@ -55,7 +55,8 @@
     { "office": "string", "jurisdiction_level": "state | county | city", "phone": "string", "address": "string", "website": "string" }
   ],
   "outputs": {
-    "google_doc_url": "string or null",
-    "artifact_url": "string or null"
+    "google_doc_url": "string or null -- null when run headlessly with no Drive connector available",
+    "artifact_url": "string or null -- set only in an interactive session where the Artifact tool published a card site",
+    "pages_url": "string or null -- set only in a headless/CI run, the GitHub Pages URL of docs/reports/<slug>/"
   }
 }

@@ -20,6 +20,13 @@ Accept any mix of:
   read the full document — do not work from the title alone.
 - Uploaded files (PDF, docx, images of plans, etc).
 
+**Running headlessly (no Google Drive connector available, e.g. triggered from Slack via
+GitHub Actions):** a Google Doc MCP tool will not exist in that environment. If given a
+Google Doc link and no Drive tool is available, fetch its plain-text export instead —
+`https://docs.google.com/document/d/<DOC_ID>/export?format=txt` — which works for any doc
+shared as "anyone with the link can view." If that 403s, say plainly in the output that the
+doc needs link-sharing enabled and stop rather than guessing at its content.
+
 Read everything fully before extracting anything. These documents are messy on purpose:
 transcripts, day-long site visit logs, meeting summaries. Most of the content will be
 irrelevant. That is expected, not a problem to flag.
@@ -236,18 +243,35 @@ checkable later.
    library.
 3. **A Google Doc** built from `report.md` via the Google Drive connector, placed in the
    same Drive area as the source document when that is discoverable, otherwise the user's
-   Drive root — ask if unclear which folder.
-4. **A Claude Artifact**: load the `artifact-design` skill first, then build a card-based
-   page from `findings.json` — one card per topic with the code citation and a link to the
-   actual code, grouped by severity/category, plus a jurisdiction/contacts panel and a
-   "codes that may matter later" panel for adjacent topics the research surfaced but that
-   were not directly asked about. Whenever a finding's verify-note names an office that also
-   appears in the contacts panel, give that office an element `id` in the contacts panel and
-   turn the mention in the verify-note into an in-page link to it (`href="#that-id"`,
-   intercepted in JS to smooth-scroll and briefly flash/highlight the target) so a reader can
-   jump straight from "who do I need to call" to that office's actual number.
+   Drive root — ask if unclear which folder. If no Google Drive tool is available (headless
+   run, see note in step 0), skip this output entirely rather than failing the run —
+   `report.md` and the published HTML report already carry the full content, and
+   `outputs.google_doc_url` in `findings.json` should be left `null` with a short note why.
+4. **A card-based HTML report** from `findings.json` — one card per topic with the code
+   citation and a link to the actual code, grouped by severity/category, plus a
+   jurisdiction/contacts panel and a "codes that may matter later" panel for adjacent topics
+   the research surfaced but that were not directly asked about. Whenever a finding's
+   verify-note names an office that also appears in the contacts panel, give that office an
+   element `id` in the contacts panel and turn the mention in the verify-note into an
+   in-page link to it (`href="#that-id"`, intercepted in JS to smooth-scroll and briefly
+   flash/highlight the target) so a reader can jump straight from "who do I need to call" to
+   that office's actual number. Publish this two different ways depending on how you are
+   running:
+   - **Interactive session (Artifact tool available):** load the `artifact-design` skill
+     first, then publish it as a Claude Artifact as before.
+   - **Headless/CI run (no Artifact tool — this is the normal case when triggered from
+     Slack via GitHub Actions):** the Artifact tool does not exist outside a claude.ai
+     session, so instead write the same HTML page directly to
+     `docs/reports/<slug>/index.html` in the repo (self-contained, no external JS
+     dependencies beyond the Google Fonts stylesheet link already used, so it renders
+     correctly served flat from GitHub Pages) and update `docs/index.html`, the master
+     report listing, adding or refreshing this project's row (date, name, requester,
+     jurisdiction, link into `reports/<slug>/`). Do not try to call the Artifact tool in
+     this mode — it will not be present in the tool list; that absence is the signal you
+     are running headlessly, not an error to work around.
 5. Append a row to **`projects/index.md`**: date, project name, requester, jurisdiction,
-   links to the Google Doc and the Artifact.
+   links to the Google Doc and the published report (Artifact URL in an interactive
+   session, or the `docs/reports/<slug>/` GitHub Pages path in a headless run).
 
 ## Ground rules
 

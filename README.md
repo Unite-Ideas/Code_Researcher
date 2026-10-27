@@ -29,38 +29,54 @@ It produces:
   jurisdiction starts from what we already know instead of researching from zero.
 - An entry in `projects/index.md` so every research run stays discoverable.
 
-## Phase 2 (live): Slack `/code-research`
+## Phase 2 (in progress): Slack `/code-research`
 
-Anyone in the office can run `/code-research <Google Doc link or short description>` in
-Slack. It kicks off the same skill fully automated in GitHub Actions — no one has to sit in
-a Claude Code chat approving tool calls — and posts a pull request with the findings back
-to the channel a few minutes later. Claude has no git access in that automated run at all
-(a scoped tool list, no Bash); a human on the team reviews and merges the PR, which is what
-actually publishes the report. See `slack-integration/README.md` for setup and
-`.github/workflows/code-research.yml` for what actually runs.
+Anyone in the office will be able to run `/code-research <Google Doc link or short
+description>` in Slack and get a published report back a few minutes later, with nobody
+watching the run. This is wired up through **unite-ops** (`Unite-Ideas/unite-ops`), the
+team's shared control room for every unattended Claude routine, rather than through
+anything bespoke living in this repo:
 
-Since there's no claude.ai chat session behind this (no Artifact tool, no personal Google
-Drive connector), the automated path publishes a self-contained HTML report to
-`docs/reports/<slug>/` instead, served over GitHub Pages at
-`https://unite-ideas.github.io/Code_Researcher/`, and reads input Google Docs via their
-public link-shared export rather than an OAuth connector. Everything else — the research
-depth, the persistent library, the citation-verification rules — is identical to running it
-interactively in Claude Code; see the "headless run" notes throughout
-`.claude/skills/code-researcher/SKILL.md`.
+- A Make.com scenario receives the Slack slash command, logs the request, and fires the
+  `code-research` Claude Code Routine via the Anthropic API.
+- The routine (`routines/code-research.md` in unite-ops) runs this repo's
+  `/code-research` skill unattended: it clones this repo, does the research, posts
+  progress directly to Slack via its own Slack connector, and commits the report and
+  library updates straight to this repo's `main` — full tool access, no approval prompts,
+  because it's a connector-scoped cloud routine, not an open-ended agent.
+- unite-ops holds the routine definition and the run receipts (started/finished, so a
+  stalled run gets caught); it never holds this project's code, library, or project data
+  — that all stays here, the same way `Client_Research` stays its own repo even though
+  its `project-brief` routine is defined in unite-ops.
+
+Since there's no claude.ai chat session behind an automated run (no Artifact tool, no
+personal Google Drive connector unless the routine's own Drive connector is attached), the
+automated path publishes a self-contained HTML report to `docs/reports/<slug>/` instead,
+served over GitHub Pages at `https://unite-ideas.github.io/Code_Researcher/`, and reads
+input Google Docs via their public link-shared export when no Drive connector is present.
+Everything else — the research depth, the persistent library, the citation-verification
+rules — is identical to running it interactively in Claude Code; see the "headless run"
+notes throughout `.claude/skills/code-researcher/SKILL.md`.
+
+An earlier version of this automation (a GitHub Actions workflow plus a Cloudflare Worker
+relay, living in this repo) has been retired in favor of the unite-ops pattern above, to
+avoid building a second one-off automation system alongside the one the rest of the office
+already uses.
 
 ### Still planned
 
+- Standing up the actual `code-research` routine, Make scenario, and Slack channel (see
+  `routines/code-research.md` and `prompts/routine-launcher-code-research.md` in
+  unite-ops).
 - A WordPress page as an alternate front door (text box + file upload) for anyone who'd
-  rather not use Slack, posting into the same `repository_dispatch` pipeline.
+  rather not use Slack.
 - Feeding private (not just link-shared) Google Docs into the automated path via a Drive
-  service account.
+  connector or service account.
 
 ## Repository layout
 
 ```
 .claude/skills/code-researcher/SKILL.md   the research pipeline the skill follows
-.github/workflows/code-research.yml       runs the skill headlessly, triggered by Slack
-slack-integration/                        Cloudflare Worker relay + setup README
 docs/                                     GitHub Pages site (published reports)
   index.md / index.html                   master listing of every published report
   reports/<slug>/                         one static HTML report per project
